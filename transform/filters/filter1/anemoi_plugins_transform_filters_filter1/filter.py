@@ -2,15 +2,12 @@
 from __future__ import annotations
 
 import logging
-import os
-import re
-import subprocess
-import tempfile
 
-# from anemoi.transform.filters import filter_registry
-from anemoi.transform.filter import Filter
 from anemoi.transform.fields import new_field_from_numpy
 from anemoi.transform.fields import new_fieldlist_from_list
+from anemoi.transform.filter import Filter
+
+# from anemoi.transform.filters import filter_registry
 
 LOG = logging.getLogger(__name__)
 
@@ -27,7 +24,7 @@ class Custom(Filter):
         print("✅✅ CustomFilter forward")
         print("  Received data: ")
         for field in data:
-            print('  ', field)
+            print("  ", field)
 
         result = []
         for field in data:
@@ -36,7 +33,7 @@ class Custom(Filter):
                 values = field.to_numpy(flatten=True)
                 values = values * 2
                 result.append(field)
-                result.append(new_field_from_numpy(values, template=field, param=field.metadata("param") + '_modified'))
+                result.append(new_field_from_numpy(values, template=field, param=field.metadata("param") + "_modified"))
 
             else:
                 result.append(field)

@@ -31,7 +31,9 @@ class Custom(MatchingFieldsFilter):
 
         values = temperature.to_numpy(flatten=True)
         values = values * self.a
-        new_field = new_field_from_numpy(values, template=temperature, param=temperature.metadata("param") + '_modified_2')
+        new_field = new_field_from_numpy(
+            values, template=temperature, param=temperature.metadata("param") + "_modified_2"
+        )
 
         yield temperature
         yield new_field
