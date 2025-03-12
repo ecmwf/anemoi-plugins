@@ -32,4 +32,4 @@ zip-safe = true
 include-package-data = true
 
 [project.entry-points."anemoi.filters"]
-custom_filter = "anemoi_plugins_transform_filters_filter1.filter:Custom"
+custom_filter1 = "anemoi_plugins_transform_filters_filter1.filter:Custom"
