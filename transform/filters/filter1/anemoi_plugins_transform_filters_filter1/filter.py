@@ -3,11 +3,10 @@ from __future__ import annotations
 
 import logging
 
+# from anemoi.transform.filters import filter_registry
 from anemoi.transform.fields import new_field_from_numpy
 from anemoi.transform.fields import new_fieldlist_from_list
 from anemoi.transform.filter import Filter
-
-# from anemoi.transform.filters import filter_registry
 
 LOG = logging.getLogger(__name__)
 
