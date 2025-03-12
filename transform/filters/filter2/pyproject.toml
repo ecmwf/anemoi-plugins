@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "anemoi-plugins-transform-filters-filter2"
+version = "0.1.0"
+description = "A plugin for anemoi"
+readme = { text = "Filter plugin to do something", content-type = "text/markdown" }
+authors = [
+    { name = "John Doe", email = "author@example.com" }
+]
+license = { text = "Apache License Version 2.0" }
+requires-python = ">=3.10"
+keywords = ["meteorology"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/ecmwf/anemoi-plugins"
+
+[tool.setuptools]
+packages = ["anemoi_plugins_transform_filters_filter2"]
+zip-safe = true
+include-package-data = true
+
+[project.entry-points."anemoi.filters"]
+custom_filter2 = "anemoi_plugins_transform_filters_filter2.filter:Custom"
