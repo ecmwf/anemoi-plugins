@@ -11,7 +11,6 @@ framework it seeks to handle many of the complexities that
 meteorological organisations will share, allowing them to easily train
 models from existing recipes but with their own data.
 
-
 *****************
  Anemoi packages
 *****************
