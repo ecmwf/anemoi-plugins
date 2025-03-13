@@ -1,16 +1,17 @@
 ####################################
- Welcome to Anemoi's documentation!
+ Welcome to Anemoi's plugin documentation!
 ####################################
 
-*Anemoi* is a framework for developing machine learning weather
-forecasting models. It comprises of components or packages for preparing
-training datasets, conducting ML model training and a registry for
-datasets and trained models. Anemoi provides tools for operational
-inference, including interfacing to verification software. As a
-framework it seeks to handle many of the complexities that
-meteorological organisations will share, allowing them to easily train
-models from existing recipes but with their own data.
+The *Anemoi* packages can be extended with plugins. This documentation provides examples of how to create plugins.
 
+*Anemoi* relies on Python's standard plugin system, based on the `importlib.metadata`_ module.
+
+Add to your `pyproject.toml` file the following lines:
+
+.. code-block:: toml
+
+    [project.entry-points."anemoi.transform.filters"]
+    custom_filter = "my.package.filter:CustomFilter"
 
 *****************
  Anemoi packages
@@ -32,3 +33,4 @@ models from existing recipes but with their own data.
 *Anemoi* is available under the open source `Apache License`__.
 
 .. __: http://www.apache.org/licenses/LICENSE-2.0.html
+.. _importlib.metadata: https://docs.python.org/3/library/importlib.html#module-importlib.metadata
