@@ -27,7 +27,7 @@ classifiers = [
 ]
 
 urls.Homepage = "https://github.com/ecmwf/anemoi-plugins"
-entry-points."anemoi.PACKAGE.KINDs".example = "anemoi_PACKAGE_KIND_example_plugin.example:ExamplePlugin"
+entry-points."anemoi.PACKAGE.EXTRAKINDs".example = "anemoi_PACKAGE_KIND_example_plugin.example:ExamplePlugin"
 
 [tool.setuptools]
 packages = [ "anemoi_PACKAGE_KIND_example_plugin" ]
