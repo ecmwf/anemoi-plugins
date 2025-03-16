@@ -1,0 +1,89 @@
+# (C) Copyright 2024 Anemoi contributors.
+#
+# This software is licensed under the terms of the Apache Licence Version 2.0
+# which can be obtained at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# In applying this licence, ECMWF does not waive the privileges and immunities
+# granted to it by virtue of its status as an intergovernmental organisation
+# nor does it submit to any jurisdiction.
+
+[build-system]
+requires = [ "setuptools>=60", "setuptools-scm>=8" ]
+
+[project]
+name = "anemoi-plugins"
+
+description = "A package to hold various functions to support training of ML models on ECMWF data."
+keywords = [ "ai", "tools" ]
+
+license = { file = "LICENSE" }
+authors = [
+  { name = "European Centre for Medium-Range Weather Forecasts (ECMWF)", email = "software.support@ecmwf.int" },
+]
+
+requires-python = ">=3.10"
+
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+
+dynamic = [ "version" ]
+dependencies = [
+"mako",
+]
+
+optional-dependencies.all = [  ]
+optional-dependencies.dev = [  ]
+
+optional-dependencies.docs = [
+  "nbsphinx",
+  "pandoc",
+  "requests",
+  "sphinx",
+  "sphinx-argparse",
+  "sphinx-rtd-theme",
+  "termcolor",
+]
+
+
+optional-dependencies.tests = [ "pytest" ]
+
+
+urls.Documentation = "https://anemoi-plugins.readthedocs.io/"
+urls.Homepage = "https://github.com/ecmwf/anemoi-plugins/"
+urls.Issues = "https://github.com/ecmwf/anemoi-plugins/issues"
+urls.Repository = "https://github.com/ecmwf/anemoi-plugins/"
+
+scripts.anemoi-plugins = "anemoi.plugins.__main__:main"
+
+[tool.setuptools.package-data]
+"anemoi.plugins.data" = [ "**/*" ]
+
+[tool.setuptools_scm]
+version_file = "src/anemoi/plugins/_version.py"
+
+[tool.pytest.ini_options]
+markers = [
+  "skip_on_hpc: mark a test that should not be run on HPC",
+]
+
+[tool.mypy]
+strict = true
+exclude = [
+  "docs/**",
+]
+
+[tool.pydocstringformatter]
+write = true
+exclude = "docs/**"
+style = "numpydoc"

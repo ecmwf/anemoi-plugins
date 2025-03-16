@@ -4,10 +4,10 @@ build-backend = "setuptools.build_meta"
 requires = [ "setuptools>=61" ]
 
 [project]
-name = "anemoi-PACKAGE-KIND-example-plugin"
+name = "anemoi-package-kind-example-plugin"
 version = "0.1.0"
-description = "A KIND plugin for anemoi.PACKAGE"
-readme = { text = "Filter plugin to do something", content-type = "text/markdown" }
+description = "A ${kind} plugin for anemoi.${package}"
+readme = { text = "Anemoi ${kind} plugin to do something", content-type = "text/markdown" }
 keywords = [ "meteorology" ]
 license = { text = "Apache License Version 2.0" }
 authors = [
