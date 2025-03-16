@@ -3,7 +3,7 @@ from anemoi.inference.testing import TestingContext
 
 
 def test_plugin():
-    input = create_input(TestingContext(), "example")
+    create_input(TestingContext(), "example")
 
 
 if __name__ == "__main__":

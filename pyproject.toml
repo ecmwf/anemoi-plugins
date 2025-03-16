@@ -39,7 +39,7 @@ classifiers = [
 
 dynamic = [ "version" ]
 dependencies = [
-"mako",
+  "mako",
 ]
 
 optional-dependencies.all = [  ]
@@ -55,9 +55,7 @@ optional-dependencies.docs = [
   "termcolor",
 ]
 
-
 optional-dependencies.tests = [ "pytest" ]
-
 
 urls.Documentation = "https://anemoi-plugins.readthedocs.io/"
 urls.Homepage = "https://github.com/ecmwf/anemoi-plugins/"
