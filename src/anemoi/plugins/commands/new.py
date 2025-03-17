@@ -6,7 +6,6 @@
 # nor does it submit to any jurisdiction.
 
 import os
-import sys
 from argparse import ArgumentParser
 from argparse import Namespace
 
@@ -14,6 +13,9 @@ from anemoi.plugins.data import common_directory
 from anemoi.plugins.data import templates_directory
 
 from . import Command
+
+XARRAY = ["datasets.create.source"]
+GRIB = ["datasets.create.source", "inference.input"]
 
 
 class Create(Command):
@@ -29,9 +31,12 @@ class Create(Command):
         """
 
         packages = sorted(os.listdir(templates_directory))
-        kinds = sorted([f'{p}.{k}' for p in packages for k in sorted(os.listdir(os.path.join(templates_directory, p))) ])
+        kinds = sorted([f"{p}.{k}" for p in packages for k in sorted(os.listdir(os.path.join(templates_directory, p)))])
 
         command_parser.add_argument("plugin", type=str, help="The type of plugin", choices=kinds)
+        group = command_parser.add_mutually_exclusive_group()
+        group.add_argument("--xarray", action="store_true", help="Create an xarray plugin")
+        group.add_argument("--grib", action="store_true", help="Create a grib plugin")
 
     def run(self, args: Namespace) -> None:
         """Execute the command with the provided arguments.
@@ -42,8 +47,7 @@ class Create(Command):
             The arguments passed to the command.
         """
 
-        package, extended_kind = args.plugin.split(".",1)
-
+        package, extended_kind = args.plugin.split(".", 1)
 
         target_directory = os.path.join(os.getcwd(), package)
 
@@ -91,15 +95,41 @@ class Create(Command):
                 return f"{name}.py"
             return path
 
+        def specialise(path: str) -> str:
+            """Specialise the file if it matches certain criteria.
+
+            Parameters
+            ----------
+            path : str
+                The original file path.
+
+            Returns
+            -------
+            str
+                The specialised file path.
+            """
+
+            directory, file = os.path.split(path)
+            # if args.xarray:
+            #     if
+
+            return path
+
         self.copy_files(
             os.path.join(templates_directory, package, extended_kind),
             os.path.join(target_directory, plugin_package),
             rename=rename,
+            specialise=specialise,
             **settings,
         )
 
     def copy_files(
-        self, source_directory: str, target_directory: str, rename: callable = lambda x: x, **kwargs: str
+        self,
+        source_directory: str,
+        target_directory: str,
+        rename: callable = lambda x: x,
+        specialise: callable = lambda x: x,
+        **kwargs: str,
     ) -> None:
         """Copy files from the source directory to the target directory.
 
@@ -122,6 +152,8 @@ class Create(Command):
                 target = os.path.join(target_directory, os.path.relpath(full, source_directory))
 
                 os.makedirs(os.path.dirname(target), exist_ok=True)
+
+                file = specialise(file)
 
                 if file.endswith(".mako"):
                     target_name = os.path.splitext(os.path.basename(target))[0]
