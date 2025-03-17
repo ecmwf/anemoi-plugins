@@ -1,5 +1,5 @@
-from anemoi.${package}.${extended_kind} import create_${kind}
-from anemoi.${package}.testing import TestingContext
+from anemoi.${package}.${extended_kind}s import create_${kind}
+from anemoi.${package}.${testing} import TestingContext
 
 
 def test_plugin():

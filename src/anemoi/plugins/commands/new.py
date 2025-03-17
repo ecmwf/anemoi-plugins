@@ -49,16 +49,21 @@ class Create(Command):
 
         package, extended_kind = args.plugin.split(".", 1)
 
-        target_directory = os.path.join(os.getcwd(), package)
+
 
         kind = extended_kind.split(".")[-1]
+        if extended_kind != kind:
+            testing = extended_kind.split(".")[0] + '.testing'
+        else:
+            testing = 'testing'
 
         name = "example"
 
         project_name = f"anemoi-{package}-{extended_kind.replace('.','-')}-example-plugin"
+        target_directory = os.path.join(os.getcwd(), 'tmp', package, *extended_kind.split('.'), name)
 
         plugin_package = project_name.replace("-", "_")
-        entry_point = ".".join(["anemoi", package, extended_kind])
+        entry_point = ".".join(["anemoi", package, extended_kind]) + 's'
         plugin_class = name.capitalize() + "Plugin"
 
         settings: dict = dict(
@@ -70,6 +75,7 @@ class Create(Command):
             plugin_package=plugin_package,
             entry_point=entry_point,
             plugin_class=plugin_class,
+            testing=testing,
         )
 
         self.copy_files(
@@ -110,8 +116,10 @@ class Create(Command):
             """
 
             directory, file = os.path.split(path)
-            # if args.xarray:
-            #     if
+            if args.xarray:
+                 specialised_path = os.path.join(directory, "xarray-" + file)
+                 if os.path.exists(specialised_path):
+                    return specialised_path
 
             return path
 
@@ -148,12 +156,17 @@ class Create(Command):
 
         for root, _, files in os.walk(source_directory):
             for file in files:
+
+                if '-' in file:
+                    # Skip specialised files
+                    continue
+
                 full = os.path.join(root, file)
                 target = os.path.join(target_directory, os.path.relpath(full, source_directory))
 
                 os.makedirs(os.path.dirname(target), exist_ok=True)
 
-                file = specialise(file)
+                full = specialise(full)
 
                 if file.endswith(".mako"):
                     target_name = os.path.splitext(os.path.basename(target))[0]
