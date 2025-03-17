@@ -42,7 +42,6 @@ class Create(Command):
         args : Namespace
             The arguments passed to the command.
         """
-
         kinds = sorted(os.listdir(os.path.join(templates_directory, args.package)))
 
         if args.kind not in kinds:
@@ -50,29 +49,61 @@ class Create(Command):
             exit(1)
 
         target_directory: str = os.path.join(os.getcwd(), args.package)
-        print(f"{target_directory=}")
-        print(f"{common_directory=}")
 
-        settings: dict[str, str] = {
-            "package": args.package,
-            "package_extended": args.package + ".create",
-            "kind": args.kind,
-            "name": "example",
-            "project_name": "anemoi-package-kind-example-plugin",
-            "version": "0.1.0",
-            "package_name": "anemoi_package_kind_example_plugin",
-            "entry_point": "anemoi_package_kind_example_plugin",
-            "description": "An example plugin for the Anemoi package-kind package.",
-            "author": "Anemoi contributors",
-            "year": "2024",
-            "email": "",
-            "url": "https://anemoi.org",
-            "license": "Apache 2.0",
-        }
+        package: str = args.package
+        kind: str = args.kind.split(".")[-1]
+        extended_kind: str = args.kind
 
-        self.copy_files(common_directory, target_directory, **settings)
+        name: str = "example"
 
-    def copy_files(self, source_directory: str, target_directory: str, **kwargs: str) -> None:
+        project_name: str = f"anemoi-{package}-{extended_kind.replace('.','-')}-example-plugin"
+
+        plugin_package: str = project_name.replace("-", "_")
+        entry_point: str = project_name
+        plugin_class: str = name.capitalize() + "Plugin"
+
+        settings: dict = dict(
+            package=package,
+            kind=kind,
+            extended_kind=extended_kind,
+            name=name,
+            project_name=project_name,
+            plugin_package=plugin_package,
+            entry_point=entry_point,
+            plugin_class=plugin_class,
+        )
+
+        self.copy_files(
+            common_directory,
+            target_directory,
+            **settings,
+        )
+
+        def rename(path: str) -> str:
+            """Rename the file if it matches certain criteria.
+
+            Parameters
+            ----------
+            path : str
+                The original file path.
+
+            Returns
+            -------
+            str
+                The renamed file path.
+            """
+            if path == "plugin.py":
+                return f"{name}.py"
+            return path
+
+        self.copy_files(
+            os.path.join(templates_directory, package, extended_kind),
+            os.path.join(target_directory, plugin_package),
+            rename=rename,
+            **settings,
+        )
+
+    def copy_files(self, source_directory: str, target_directory: str, rename: callable = lambda x: x, **kwargs: str) -> None:
         """Copy files from the source directory to the target directory.
 
         Parameters
@@ -81,6 +112,8 @@ class Create(Command):
             The source directory.
         target_directory : str
             The target directory.
+        rename : callable, optional
+            A function to rename files, by default lambda x: x
         kwargs : str
             Additional keyword arguments to be used in the template rendering.
         """
@@ -94,11 +127,20 @@ class Create(Command):
                 os.makedirs(os.path.dirname(target), exist_ok=True)
 
                 if file.endswith(".mako"):
+                    target_name = os.path.splitext(os.path.basename(target))[0]
+                    target_dir = os.path.dirname(target)
+
+                    target_name = rename(target_name)
+                    target = os.path.join(target_dir, target_name)
+
+                    print(f"Creating {target}")
+
                     with open(full, "r") as f:
                         template = Template(f.read())
-                        with open(target[:-5], "w") as g:
+                        with open(target, "w") as g:
                             g.write(template.render(**kwargs))
                 else:
+                    print(f"Creating {target}")
                     with open(full, "r") as f:
                         with open(target, "w") as g:
                             g.write(f.read())

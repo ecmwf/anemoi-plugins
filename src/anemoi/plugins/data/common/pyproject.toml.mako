@@ -1,14 +1,22 @@
 [build-system]
-build-backend = "setuptools.build_meta"
-
-requires = [ "setuptools>=61" ]
+requires = [
+  "setuptools>=60",
+]
 
 [project]
-name = "anemoi-package-kind-example-plugin"
+name = "${project_name}"
+
 version = "0.1.0"
 description = "A ${kind} plugin for anemoi.${package}"
-readme = { text = "Anemoi ${kind} plugin to do something", content-type = "text/markdown" }
-keywords = [ "meteorology" ]
+readme = { text = "A ${kind} plugin for anemoi.${package}", content-type = "text/markdown" }
+
+keywords = [
+  "${kind}",
+  "${package}",
+  "ai",
+  "tools",
+]
+
 license = { text = "Apache License Version 2.0" }
 authors = [
   { name = "John Doe", email = "author@example.com" },
@@ -27,9 +35,5 @@ classifiers = [
 ]
 
 urls.Homepage = "https://github.com/ecmwf/anemoi-plugins"
-entry-points."anemoi.PACKAGE.EXTRAKINDs".example = "anemoi_PACKAGE_KIND_example_plugin.example:ExamplePlugin"
 
-[tool.setuptools]
-packages = [ "anemoi_PACKAGE_KIND_example_plugin" ]
-zip-safe = true
-include-package-data = true
+entry-points."anemoi.${entry_point}".${name} = "${plugin_package}.${name}:${plugin_class}"
