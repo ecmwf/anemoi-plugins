@@ -49,21 +49,19 @@ class Create(Command):
 
         package, extended_kind = args.plugin.split(".", 1)
 
-
-
         kind = extended_kind.split(".")[-1]
         if extended_kind != kind:
-            testing = extended_kind.split(".")[0] + '.testing'
+            testing = extended_kind.split(".")[0] + ".testing"
         else:
-            testing = 'testing'
+            testing = "testing"
 
         name = "example"
 
         project_name = f"anemoi-{package}-{extended_kind.replace('.','-')}-example-plugin"
-        target_directory = os.path.join(os.getcwd(), 'tmp', package, *extended_kind.split('.'), name)
+        target_directory = os.path.join(os.getcwd(), "tmp", package, *extended_kind.split("."), name)
 
         plugin_package = project_name.replace("-", "_")
-        entry_point = ".".join(["anemoi", package, extended_kind]) + 's'
+        entry_point = ".".join(["anemoi", package, extended_kind]) + "s"
         plugin_class = name.capitalize() + "Plugin"
 
         settings: dict = dict(
@@ -117,8 +115,8 @@ class Create(Command):
 
             directory, file = os.path.split(path)
             if args.xarray:
-                 specialised_path = os.path.join(directory, "xarray-" + file)
-                 if os.path.exists(specialised_path):
+                specialised_path = os.path.join(directory, "xarray-" + file)
+                if os.path.exists(specialised_path):
                     return specialised_path
 
             return path
@@ -149,6 +147,8 @@ class Create(Command):
             The target directory.
         rename : callable, optional
             A function to rename files, by default lambda x: x
+        specialise : callable, optional
+            A function to specialise files, by default lambda x: x
         kwargs : str
             Additional keyword arguments to be used in the template rendering.
         """
@@ -157,7 +157,7 @@ class Create(Command):
         for root, _, files in os.walk(source_directory):
             for file in files:
 
-                if '-' in file:
+                if "-" in file:
                     # Skip specialised files
                     continue
 
