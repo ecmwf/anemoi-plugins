@@ -29,10 +29,9 @@ class Create(Command):
         """
 
         packages = sorted(os.listdir(templates_directory))
-        print(packages)
+        kinds = sorted([f'{p}.{k}' for p in packages for k in sorted(os.listdir(os.path.join(templates_directory, p))) ])
 
-        command_parser.add_argument("package", type=str, help="The package name", choices=packages)
-        command_parser.add_argument("kind", type=str, help="The kind of plugin")
+        command_parser.add_argument("plugin", type=str, help="The type of plugin", choices=kinds)
 
     def run(self, args: Namespace) -> None:
         """Execute the command with the provided arguments.
@@ -42,25 +41,21 @@ class Create(Command):
         args : Namespace
             The arguments passed to the command.
         """
-        kinds = sorted(os.listdir(os.path.join(templates_directory, args.package)))
 
-        if args.kind not in kinds:
-            print(f"Invalid kind '{args.kind}' for package '{args.package}'. Values are {kinds}.", file=sys.stderr)
-            exit(1)
+        package, extended_kind = args.plugin.split(".",1)
 
-        target_directory: str = os.path.join(os.getcwd(), args.package)
 
-        package: str = args.package
-        kind: str = args.kind.split(".")[-1]
-        extended_kind: str = args.kind
+        target_directory = os.path.join(os.getcwd(), package)
 
-        name: str = "example"
+        kind = extended_kind.split(".")[-1]
 
-        project_name: str = f"anemoi-{package}-{extended_kind.replace('.','-')}-example-plugin"
+        name = "example"
 
-        plugin_package: str = project_name.replace("-", "_")
-        entry_point: str = project_name
-        plugin_class: str = name.capitalize() + "Plugin"
+        project_name = f"anemoi-{package}-{extended_kind.replace('.','-')}-example-plugin"
+
+        plugin_package = project_name.replace("-", "_")
+        entry_point = ".".join(["anemoi", package, extended_kind])
+        plugin_class = name.capitalize() + "Plugin"
 
         settings: dict = dict(
             package=package,
@@ -103,7 +98,9 @@ class Create(Command):
             **settings,
         )
 
-    def copy_files(self, source_directory: str, target_directory: str, rename: callable = lambda x: x, **kwargs: str) -> None:
+    def copy_files(
+        self, source_directory: str, target_directory: str, rename: callable = lambda x: x, **kwargs: str
+    ) -> None:
         """Copy files from the source directory to the target directory.
 
         Parameters
