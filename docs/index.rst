@@ -15,6 +15,17 @@ Add to your `pyproject.toml` file the following lines:
    [project.entry-points."anemoi.transform.filters"]
    custom_filter = "my.package.filter:CustomFilter"
 
+**Command line tool**
+
+-  :doc:`cli/new`
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Command line tool
+
+   cli/new
+
 *****************
  Anemoi packages
 *****************

@@ -34,6 +34,10 @@ class Create(Command):
         kinds = sorted([f"{p}.{k}" for p in packages for k in sorted(os.listdir(os.path.join(templates_directory, p)))])
 
         command_parser.add_argument("plugin", type=str, help="The type of plugin", choices=kinds)
+
+        command_parser.add_argument("--name", type=str, help="The name of the plugin", default="example")
+        command_parser.add_argument("--package", type=str, help="The package of the plugin")
+
         group = command_parser.add_mutually_exclusive_group()
         group.add_argument("--xarray", action="store_true", help="Create an xarray plugin")
         group.add_argument("--grib", action="store_true", help="Create a grib plugin")
@@ -55,10 +59,14 @@ class Create(Command):
         else:
             testing = "testing"
 
-        name = "example"
+        name = args.name
 
-        project_name = f"anemoi-{package}-{extended_kind.replace('.','-')}-example-plugin"
-        target_directory = os.path.join(os.getcwd(), "tmp", package, *extended_kind.split("."), name)
+        if args.package:
+            project_name = args.package
+        else:
+            project_name = f"anemoi-{package}-{extended_kind.replace('.','-')}-example-plugin"
+
+        target_directory = os.path.join(os.getcwd(), package, *extended_kind.split("."), name)
 
         plugin_package = project_name.replace("-", "_")
         entry_point = ".".join(["anemoi", package, extended_kind]) + "s"
