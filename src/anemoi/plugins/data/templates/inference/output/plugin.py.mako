@@ -8,6 +8,9 @@ from anemoi.inference.types import State
 
 class ${plugin_class}(Output):
 
+    api_version = "${api_version}"
+    schema = None
+
     def __init__(
         self,
         context: Context,

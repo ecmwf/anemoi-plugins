@@ -10,6 +10,9 @@ from anemoi.datasets.create.typing import DateList
 
 class ${plugin_class}(Source):
 
+    api_version = "${api_version}"
+    schema = None
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

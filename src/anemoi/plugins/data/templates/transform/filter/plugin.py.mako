@@ -9,6 +9,9 @@ LOG = logging.getLogger(__name__)
 class ${plugin_class}(Filter):
     """A filter to do something on fields."""
 
+    api_version = "${api_version}"
+    schema = None
+
     def __init__(self, factor: float = 2):
         self.factor = factor
 
