@@ -8,15 +8,14 @@ provides examples of how to create plugins.
 *Anemoi* relies on Python's standard plugin system, based on the
 importlib.metadata_ module.
 
-Add to your `pyproject.toml` file the following lines:
+**********
+ Examples
+**********
 
-.. code:: toml
+anemoi-datasets create source
+=============================
 
-   [project.entry-points."anemoi.transform.filters"]
-   custom_filter = "my.package.filter:CustomFilter"
-
-**Examples**
-
+   -  :doc:`examples/datasets-create-source-basic-source/index`
    -  :doc:`examples/datasets-create-source-xarray-source/index`
 
 .. toctree::
@@ -24,9 +23,12 @@ Add to your `pyproject.toml` file the following lines:
    :hidden:
    :caption: Examples
 
+   examples/datasets-create-source-basic-source/index
    examples/datasets-create-source-xarray-source/index
 
-**Command line tool**
+*******************
+ Command line tool
+*******************
 
 -  :doc:`cli/new`
 

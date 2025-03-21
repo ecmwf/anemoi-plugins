@@ -6,10 +6,12 @@ class ${plugin_class}(XarraySourceBase):
 
     # The version of the plugin API, used to ensure compatibility
     # with the plugin manager.
+
     api_version = "${api_version}"
 
     # The schema of the plugin, used to validate the parameters.
     # This is a Pydantic model.
+
     schema = None
 
     def __init__(self, *args, **kwargs):
