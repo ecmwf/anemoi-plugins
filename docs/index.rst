@@ -15,6 +15,17 @@ Add to your `pyproject.toml` file the following lines:
    [project.entry-points."anemoi.transform.filters"]
    custom_filter = "my.package.filter:CustomFilter"
 
+**Examples**
+
+   -  :doc:`examples/datasets-create-source-xarray-source/index`
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Examples
+
+   examples/datasets-create-source-xarray-source/index
+
 **Command line tool**
 
 -  :doc:`cli/new`

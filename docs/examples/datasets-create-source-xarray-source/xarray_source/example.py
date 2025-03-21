@@ -1,8 +1,8 @@
-from anemoi.datasets.create.sources.xarray import XarraySourceBase
 import earthkit.data as ekd
+from anemoi.datasets.create.sources.xarray import XarraySourceBase
 
 
-class ${plugin_class}(XarraySourceBase):
+class ExamplePlugin(XarraySourceBase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

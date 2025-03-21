@@ -39,6 +39,12 @@ class Create(Command):
         command_parser.add_argument("--package", type=str, help="The package of the plugin")
 
         group = command_parser.add_mutually_exclusive_group()
+
+        group.add_argument("--path", type=str, help="Output directory", default=".")
+        group.add_argument("--doc", action="store_true", help="Generate doc examples")
+        group.add_argument("--examples", action="store_true", help="Generate examples")
+
+        group = command_parser.add_mutually_exclusive_group()
         group.add_argument("--xarray", action="store_true", help="Create an xarray plugin")
         group.add_argument("--grib", action="store_true", help="Create a grib plugin")
 
@@ -63,10 +69,39 @@ class Create(Command):
 
         if args.package:
             project_name = args.package
+            if "." in project_name:
+                raise ValueError(f"Invalid package name {project_name}")
         else:
             project_name = f"anemoi-{package}-{extended_kind.replace('.','-')}-example-plugin"
 
-        target_directory = os.path.join(os.getcwd(), package, *extended_kind.split("."), name)
+        if args.examples:
+            target_directory = os.path.join(args.path, package, *extended_kind.split("."), name)
+        elif args.doc:
+            top = __file__
+            assert "/src/" in top
+
+            while os.path.basename(top) != "src":
+                top = os.path.dirname(top)
+
+            top = os.path.join(os.path.dirname(top), "docs", "examples")
+
+            slug = "-".join([package, *extended_kind.split("."), project_name])
+
+            rst = os.path.join(top, slug, "index.rst")
+            os.makedirs(os.path.dirname(rst), exist_ok=True)
+
+            target_directory = os.path.join(top, slug)
+
+            if not os.path.exists(rst) or True:
+                with open(rst, "w") as f:
+                    f.write(f".. _{project_name}:\n\n")
+                    f.write(f"{project_name}\n")
+                    f.write("=" * len(project_name) + "\n\n")
+
+                    f.write(f".. literalinclude:: {project_name.replace('-', '_')}/{name}.py\n")
+
+        else:
+            target_directory = os.path.join(args.path, package, *extended_kind.split("."), project_name)
 
         plugin_package = project_name.replace("-", "_")
         entry_point = ".".join(["anemoi", package, extended_kind]) + "s"
@@ -82,6 +117,7 @@ class Create(Command):
             entry_point=entry_point,
             plugin_class=plugin_class,
             testing=testing,
+            api_version="1.0.0",
         )
 
         self.copy_files(
