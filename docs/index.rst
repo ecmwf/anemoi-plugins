@@ -1,17 +1,43 @@
-####################################
+###########################################
  Welcome to Anemoi's plugin documentation!
-####################################
+###########################################
 
-The *Anemoi* packages can be extended with plugins. This documentation provides examples of how to create plugins.
+The *Anemoi* packages can be extended with plugins. This documentation
+provides examples of how to create plugins.
 
-*Anemoi* relies on Python's standard plugin system, based on the `importlib.metadata`_ module.
+*Anemoi* relies on Python's standard plugin system, based on the
+importlib.metadata_ module.
 
-Add to your `pyproject.toml` file the following lines:
+**********
+ Examples
+**********
 
-.. code-block:: toml
+anemoi-datasets create source
+=============================
 
-    [project.entry-points."anemoi.transform.filters"]
-    custom_filter = "my.package.filter:CustomFilter"
+   -  :doc:`examples/datasets-create-source-basic-source/index`
+   -  :doc:`examples/datasets-create-source-xarray-source/index`
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Examples
+
+   examples/datasets-create-source-basic-source/index
+   examples/datasets-create-source-xarray-source/index
+
+*******************
+ Command line tool
+*******************
+
+-  :doc:`cli/new`
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: Command line tool
+
+   cli/new
 
 *****************
  Anemoi packages
@@ -33,4 +59,5 @@ Add to your `pyproject.toml` file the following lines:
 *Anemoi* is available under the open source `Apache License`__.
 
 .. __: http://www.apache.org/licenses/LICENSE-2.0.html
+
 .. _importlib.metadata: https://docs.python.org/3/library/importlib.html#module-importlib.metadata
