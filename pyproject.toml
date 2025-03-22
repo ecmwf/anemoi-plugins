@@ -74,6 +74,7 @@ version_file = "src/anemoi/plugins/_version.py"
 markers = [
   "skip_on_hpc: mark a test that should not be run on HPC",
 ]
+testpaths = "tests"
 
 [tool.mypy]
 strict = true
