@@ -1,3 +1,5 @@
+.. _new_command:
+
 New Command
 =======
 

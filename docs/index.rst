@@ -1,3 +1,5 @@
+.. _index-page:
+
 ###########################################
  Welcome to Anemoi's plugin documentation!
 ###########################################
@@ -13,7 +15,7 @@ The following packages can be extended with plugins:
       -  Sources
       -  Filters
 
--  :ref:`anemoi-datasets <anemoi-datasets:index-page>`
+-  :ref:`anemoi-datasets <anemoi-datasets:index-page>` (create)
 
       -  :ref:`Sources <anemoi-datasets:sources>`
       -  Filters
@@ -25,6 +27,19 @@ The following packages can be extended with plugins:
       -  Pre-processors
       -  Post-processors
       -  Runners
+
+*****************
+ Getting started
+*****************
+
+To get started with creating plugins, it is suggested that you install
+this package and run the ``anemoi-plugins new`` :ref:`command
+<new_command>` to create a new plugin project.
+
+.. code:: bash
+
+   % pip install anemoi-plugins
+   % anemoi-plugins new anemoi.datasets.create.source --name my-source
 
 **********
  Examples
@@ -44,16 +59,10 @@ anemoi-datasets create source
    examples/datasets-create-source-basic-source/index
    examples/datasets-create-source-xarray-source/index
 
-*******************
- Command line tool
-*******************
-
--  :doc:`cli/new`
-
 .. toctree::
    :maxdepth: 1
    :hidden:
-   :caption: Command line tool
+   :caption: CLI
 
    cli/new
 
