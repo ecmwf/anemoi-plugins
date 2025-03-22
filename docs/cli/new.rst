@@ -1,8 +1,7 @@
-
 .. _new_command:
 
 New Command
-=======
+===========
 
 The ``new`` command is used to create a new plugin project.
 
