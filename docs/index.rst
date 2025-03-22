@@ -3,10 +3,28 @@
 ###########################################
 
 The *Anemoi* packages can be extended with plugins. This documentation
-provides examples of how to create plugins.
+provides examples of how to create plugins. *Anemoi* relies on Python's
+standard plugin system, based on the importlib.metadata_ module.
 
-*Anemoi* relies on Python's standard plugin system, based on the
-importlib.metadata_ module.
+The following packages can be extended with plugins:
+
+-  :ref:`anemoi-transform <anemoi-transform:index-page>`
+
+      -  Sources
+      -  Filters
+
+-  :ref:`anemoi-datasets <anemoi-datasets:index-page>`
+
+      -  :ref:`Sources <anemoi-datasets:sources>`
+      -  Filters
+
+-  :ref:`anemoi-inference <anemoi-inference:index-page>`
+
+      -  Inputs
+      -  Outputs
+      -  Pre-processors
+      -  Post-processors
+      -  Runners
 
 **********
  Examples
@@ -39,14 +57,15 @@ anemoi-datasets create source
 
    cli/new
 
-*****************
- Anemoi packages
-*****************
+***********************
+ Other Anemoi packages
+***********************
 
 -  :ref:`anemoi-datasets <anemoi-datasets:index-page>`
 -  :ref:`anemoi-graphs <anemoi-graphs:index-page>`
 -  :ref:`anemoi-inference <anemoi-inference:index-page>`
 -  :ref:`anemoi-models <anemoi-models:index-page>`
+-  :ref:`anemoi-plugins <anemoi-plugins:index-page>`
 -  :ref:`anemoi-registry <anemoi-registry:index-page>`
 -  :ref:`anemoi-training <anemoi-training:index-page>`
 -  :ref:`anemoi-transform <anemoi-transform:index-page>`

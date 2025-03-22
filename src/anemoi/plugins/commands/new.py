@@ -92,7 +92,7 @@ class Create(Command):
 
             target_directory = os.path.join(top, slug)
 
-            if not os.path.exists(rst) or True:
+            if not os.path.exists(rst):
                 with open(rst, "w") as f:
                     f.write(f".. _{project_name}:\n\n")
                     f.write(f"{project_name}\n")

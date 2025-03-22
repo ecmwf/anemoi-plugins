@@ -1,5 +1,7 @@
-new
+New Command
 =======
+
+The ``new`` command is used to create a new plugin project.
 
 .. argparse::
     :module: anemoi.plugins.__main__
