@@ -5,8 +5,7 @@
 ###########################################
 
 The *Anemoi* packages can be extended with plugins. This documentation
-provides examples of how to create plugins. *Anemoi* relies on Python's
-standard plugin system, based on the importlib.metadata_ module.
+provides examples of how to create plugins.
 
 The following packages can be extended with plugins:
 
@@ -41,15 +40,38 @@ this package and run the ``anemoi-plugins new`` :ref:`command
    % pip install anemoi-plugins
    % anemoi-plugins new anemoi.datasets.create.source --name my-source
 
-**********
- Examples
-**********
+Then, you can follow the instructions in the :ref:`User Guide
+<user-guide-introduction>` to create your plugin.
 
-anemoi-datasets create source
-=============================
+***********************
+ Other Anemoi packages
+***********************
 
-   -  :doc:`examples/datasets-create-source-basic-source/index`
-   -  :doc:`examples/datasets-create-source-xarray-source/index`
+-  :ref:`anemoi-utils <anemoi-utils:index-page>`
+-  :ref:`anemoi-transform <anemoi-transform:index-page>`
+-  :ref:`anemoi-datasets <anemoi-datasets:index-page>`
+-  :ref:`anemoi-models <anemoi-models:index-page>`
+-  :ref:`anemoi-graphs <anemoi-graphs:index-page>`
+-  :ref:`anemoi-training <anemoi-training:index-page>`
+-  :ref:`anemoi-inference <anemoi-inference:index-page>`
+-  :ref:`anemoi-registry <anemoi-registry:index-page>`
+-  :ref:`anemoi-plugins <anemoi-plugins:index-page>`
+
+*********
+ License
+*********
+
+*Anemoi* is available under the open source `Apache License`__.
+
+.. __: http://www.apache.org/licenses/LICENSE-2.0.html
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+   :caption: User Guide
+
+   guide/introduction
+   guide/anatomy-of-a-plugin
 
 .. toctree::
    :maxdepth: 1
@@ -65,27 +87,3 @@ anemoi-datasets create source
    :caption: CLI
 
    cli/new
-
-***********************
- Other Anemoi packages
-***********************
-
--  :ref:`anemoi-datasets <anemoi-datasets:index-page>`
--  :ref:`anemoi-graphs <anemoi-graphs:index-page>`
--  :ref:`anemoi-inference <anemoi-inference:index-page>`
--  :ref:`anemoi-models <anemoi-models:index-page>`
--  :ref:`anemoi-plugins <anemoi-plugins:index-page>`
--  :ref:`anemoi-registry <anemoi-registry:index-page>`
--  :ref:`anemoi-training <anemoi-training:index-page>`
--  :ref:`anemoi-transform <anemoi-transform:index-page>`
--  :ref:`anemoi-utils <anemoi-utils:index-page>`
-
-*********
- License
-*********
-
-*Anemoi* is available under the open source `Apache License`__.
-
-.. __: http://www.apache.org/licenses/LICENSE-2.0.html
-
-.. _importlib.metadata: https://docs.python.org/3/library/importlib.html#module-importlib.metadata
