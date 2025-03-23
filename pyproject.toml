@@ -43,16 +43,14 @@ dependencies = [
 ]
 
 optional-dependencies.all = [  ]
-optional-dependencies.dev = [  ]
+optional-dependencies.dev = [ "anemoi-plugins[all,docs,tests]" ]
 
 optional-dependencies.docs = [
   "nbsphinx",
   "pandoc",
-  "requests",
   "sphinx",
   "sphinx-argparse",
   "sphinx-rtd-theme",
-  "termcolor",
 ]
 
 optional-dependencies.tests = [ "pytest" ]
