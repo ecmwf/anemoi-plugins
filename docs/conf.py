@@ -138,3 +138,7 @@ html_css_files = ["style.css"]
 todo_include_todos = not read_the_docs_build
 
 autodoc_member_order = "bysource"  # Keep file order
+
+html_context = {
+  'display_github': True,
+}
