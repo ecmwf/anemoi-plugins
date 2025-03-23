@@ -6,7 +6,6 @@
 # nor does it submit to any jurisdiction.
 
 import os
-import sys
 from argparse import ArgumentParser
 from argparse import Namespace
 
@@ -31,26 +30,13 @@ class Create(Command):
             The argument parser to which the arguments will be added.
         """
 
-        print("Create::add_arguments", templates_directory, file=sys.stderr)
-
         packages = sorted(os.listdir(templates_directory))
-
-        print("Create::add_arguments", packages, file=sys.stderr)
-
         kinds = sorted([f"{p}.{k}" for p in packages for k in sorted(os.listdir(os.path.join(templates_directory, p)))])
-
-        print("Create::add_arguments", kinds, file=sys.stderr)
 
         command_parser.add_argument("plugin", type=str, help="The type of plugin", choices=kinds)
 
         command_parser.add_argument("--name", type=str, help="The name of the plugin", default="example")
         command_parser.add_argument("--package", type=str, help="The package of the plugin")
-
-        group = command_parser.add_mutually_exclusive_group()
-
-        group.add_argument("--path", type=str, help="Output directory", default=".")
-        group.add_argument("--doc", action="store_true", help="Generate doc examples")
-        group.add_argument("--examples", action="store_true", help="Generate examples")
 
         command_parser.add_argument(
             "--specialiation",
@@ -61,7 +47,11 @@ class Create(Command):
             ],
         )
 
-        print("Create::add_arguments", command_parser, file=sys.stderr)
+        group = command_parser.add_mutually_exclusive_group()
+
+        group.add_argument("--path", type=str, help="Output directory", default=".")
+        group.add_argument("--doc", action="store_true", help="Generate doc examples")
+        group.add_argument("--examples", action="store_true", help="Generate examples")
 
     def run(self, args: Namespace) -> None:
         """Execute the command with the provided arguments.

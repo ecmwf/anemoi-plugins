@@ -39,6 +39,7 @@ classifiers = [
 
 dynamic = [ "version" ]
 dependencies = [
+  "anemoi-utils",
   "mako",
 ]
 
