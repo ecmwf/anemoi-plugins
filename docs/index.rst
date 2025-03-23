@@ -69,8 +69,6 @@ this package and run the ``anemoi-plugins new`` :ref:`command
 Then, you can follow the instructions in the :ref:`User Guide
 <user-guide-introduction>` to create your plugin.
 
-.. _new_command: https://anemoi.readthedocs.io/en/latest/cli/new/
-
 ***********************
  Other Anemoi packages
 ***********************

@@ -8,21 +8,35 @@
 import os
 from argparse import ArgumentParser
 from argparse import Namespace
+from collections import defaultdict
 
 from anemoi.plugins.data import common_directory
 from anemoi.plugins.data import templates_directory
 
 from . import Command
 
-XARRAY = ["datasets.create.source"]
-GRIB = ["datasets.create.source", "inference.input"]
-SPECIALISABLE = [
-    "plugin.py.mako",
-]
-
 
 class Create(Command):
     """Create a new plugin."""
+
+    def __init__(self, *args, **kwargs) -> None:
+        """Initialise the command."""
+        super().__init__(*args, **kwargs)
+
+        self.packages = sorted(os.listdir(templates_directory))
+        self.kinds = sorted(
+            [f"{p}.{k}" for p in self.packages for k in sorted(os.listdir(os.path.join(templates_directory, p)))]
+        )
+
+        self.specialisations = dict()
+
+        for kind in self.kinds:
+            for root, _, files in os.walk(os.path.join(templates_directory, *kind.split(".", 1))):
+                for file in files:
+                    if "-" in file:
+                        specialisation, file = file.split("-")
+                        self.specialisations.setdefault(kind, defaultdict(list))
+                        self.specialisations[kind][specialisation].append(file)
 
     def add_arguments(self, command_parser: ArgumentParser) -> None:
         """Add arguments to the command parser.
@@ -36,18 +50,20 @@ class Create(Command):
         packages = sorted(os.listdir(templates_directory))
         kinds = sorted([f"{p}.{k}" for p in packages for k in sorted(os.listdir(os.path.join(templates_directory, p)))])
 
-        command_parser.add_argument("plugin", type=str, help="The type of plugin", choices=kinds)
+        command_parser.add_argument("plugin", type=str, help="The type of plugin", choices=kinds, metavar="PLUGIN")
 
         command_parser.add_argument("--name", type=str, help="The name of the plugin", default="example")
         command_parser.add_argument("--package", type=str, help="The package of the plugin")
 
+        specialisations = set()
+        for s in self.specialisations.values():
+            specialisations.update(s.keys())
+
         command_parser.add_argument(
-            "--specialiation",
+            "--specialisation",
             type=str,
             help="Specialise plugin",
-            choices=[
-                "xarray",
-            ],
+            choices=sorted(s),
         )
 
         group = command_parser.add_mutually_exclusive_group()
@@ -82,6 +98,11 @@ class Create(Command):
         else:
             project_name = f"anemoi-{package}-{extended_kind.replace('.','-')}-example-plugin"
 
+        if args.specialisation:
+            self.specialisations.setdefault(args.plugin, defaultdict(list))
+            if args.specialisation not in self.specialisations[args.plugin]:
+                raise ValueError(f"Specialisation `{args.specialisation}` not found for `{args.plugin}`")
+
         if args.examples:
             target_directory = os.path.join(args.path, package, *extended_kind.split("."), name)
         elif args.doc:
@@ -109,7 +130,7 @@ class Create(Command):
                     f.write(f".. literalinclude:: {project_name.replace('-', '_')}/{name}.py\n")
 
         else:
-            target_directory = os.path.join(args.path, package, *extended_kind.split("."), project_name)
+            target_directory = os.path.join(args.path, project_name)
 
         plugin_package = project_name.replace("-", "_")
         entry_point = ".".join(["anemoi", package, extended_kind]) + "s"
@@ -167,13 +188,12 @@ class Create(Command):
 
             directory, file = os.path.split(path)
 
-            if args.specialiation and file in SPECIALISABLE:
-
-                specialised_path = os.path.join(directory, args.specialiation + "-" + file)
-                if not os.path.exists(specialised_path):
-                    raise ValueError(f"Specialisation `{args.specialiation}` not found for `{args.plugin}`")
-
-                return specialised_path
+            if args.specialisation:
+                self.specialisations.setdefault(args.plugin, defaultdict(list))
+                files = self.specialisations[args.plugin][args.specialisation]
+                if file in files:
+                    specialised_path = os.path.join(directory, args.specialisation + "-" + file)
+                    return specialised_path
 
             return path
 
