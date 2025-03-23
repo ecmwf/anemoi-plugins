@@ -140,5 +140,8 @@ todo_include_todos = not read_the_docs_build
 autodoc_member_order = "bysource"  # Keep file order
 
 html_context = {
-  'display_github': True,
+    "display_github": True,
+    "github_user": "ecmwf",
+    "github_repo": "anemoi-plugins",
+    "github_version": "main/docs/",
 }
