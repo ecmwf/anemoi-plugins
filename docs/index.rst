@@ -7,6 +7,36 @@
 The *Anemoi* packages can be extended with plugins. This documentation
 provides examples of how to create plugins.
 
+.. admonition:: When to develop a plugin?
+
+   Anemoi plugins are intended to be developed for features that are
+   specific to an organisation. For example, if you want to create
+   datasets from your own archive's data, encoded using an in-house
+   bespoke format, then you should implement an Anemoi dataset source
+   plugin.
+
+   If you intend to develop an Anemoi transform filter that could be
+   used by many users, you should consider contributing it to the main
+   repository.
+
+*******************
+ What are plugins?
+*******************
+
+Plugins are Python classes that extend the functionality of the *Anemoi*
+packages, but are developed and maintained separately. *Anemoi* will
+look for plugins that have been installed in the Python environment and
+add them to the available functionality:
+
+.. code:: bash
+
+   % pip install anemoi-dataset
+   % pip install my-dataset-plugin
+
+*****************
+ Getting started
+*****************
+
 The following packages can be extended with plugins:
 
 -  :ref:`anemoi-transform <anemoi-transform:index-page>`
@@ -26,10 +56,6 @@ The following packages can be extended with plugins:
       -  Pre-processors
       -  Post-processors
       -  Runners
-
-*****************
- Getting started
-*****************
 
 To get started with creating plugins, it is suggested that you install
 this package and run the ``anemoi-plugins new`` :ref:`command

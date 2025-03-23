@@ -29,7 +29,7 @@ html_logo = "_static/logo.png"
 
 # -- Project information -----------------------------------------------------
 
-project = "Anemoi"
+project = "Anemoi Plugins"
 
 author = "Anemoi contributors"
 
