@@ -16,6 +16,9 @@ from . import Command
 
 XARRAY = ["datasets.create.source"]
 GRIB = ["datasets.create.source", "inference.input"]
+SPECIALISABLE = [
+    "plugin.py.mako",
+]
 
 
 class Create(Command):
@@ -163,10 +166,13 @@ class Create(Command):
             """
 
             directory, file = os.path.split(path)
-            if args.specialiation:
+            if args.specialiation and file in SPECIALISABLE:
+
                 specialised_path = os.path.join(directory, args.specialiation + "-" + file)
-                if os.path.exists(specialised_path):
-                    return specialised_path
+                if not os.path.exists(specialised_path):
+                    raise ValueError(f"Specialisation `{args.specialiation}` not found for `{args.plugin}`")
+
+                return specialised_path
 
             return path
 
