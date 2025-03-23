@@ -11,13 +11,13 @@ provides examples of how to create plugins.
 
    Anemoi plugins are intended to be developed for features that are
    specific to an organisation. For example, if you want to create
-   datasets from your own archive's data, encoded using an in-house
-   bespoke format, then you should implement an Anemoi dataset source
-   plugin.
+   datasets from your own archived data, encoded using an in-house
+   bespoke format, then you should implement an :ref:`anemoi-datasets
+   <anemoi-datasets:index-page>` source plugin.
 
-   If you intend to develop an Anemoi transform filter that could be
-   used by many users, you should consider contributing it to the main
-   repository.
+   If you intend to develop an :ref:`anemoi-transform
+   <anemoi-transform:index-page>` filter that could be used by many
+   users, you should consider contributing it to the main repository.
 
 *******************
  What are plugins?
