@@ -166,6 +166,7 @@ class Create(Command):
             """
 
             directory, file = os.path.split(path)
+
             if args.specialiation and file in SPECIALISABLE:
 
                 specialised_path = os.path.join(directory, args.specialiation + "-" + file)
