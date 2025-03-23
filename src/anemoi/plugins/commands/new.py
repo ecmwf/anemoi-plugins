@@ -44,9 +44,14 @@ class Create(Command):
         group.add_argument("--doc", action="store_true", help="Generate doc examples")
         group.add_argument("--examples", action="store_true", help="Generate examples")
 
-        group = command_parser.add_mutually_exclusive_group()
-        group.add_argument("--xarray", action="store_true", help="Create an xarray plugin")
-        group.add_argument("--grib", action="store_true", help="Create a grib plugin")
+        group.add_argument(
+            "--specialiation",
+            type=str,
+            help="Specialise plugin",
+            choices=[
+                "xarray",
+            ],
+        )
 
     def run(self, args: Namespace) -> None:
         """Execute the command with the provided arguments.
@@ -158,8 +163,8 @@ class Create(Command):
             """
 
             directory, file = os.path.split(path)
-            if args.xarray:
-                specialised_path = os.path.join(directory, "xarray-" + file)
+            if args.specialiation:
+                specialised_path = os.path.join(directory, args.specialiation + "-" + file)
                 if os.path.exists(specialised_path):
                     return specialised_path
 
