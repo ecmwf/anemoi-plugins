@@ -6,6 +6,7 @@
 # nor does it submit to any jurisdiction.
 
 import os
+import sys
 from argparse import ArgumentParser
 from argparse import Namespace
 
@@ -30,8 +31,15 @@ class Create(Command):
             The argument parser to which the arguments will be added.
         """
 
+        print("Create::add_arguments", templates_directory, file=sys.stderr)
+
         packages = sorted(os.listdir(templates_directory))
+
+        print("Create::add_arguments", packages, file=sys.stderr)
+
         kinds = sorted([f"{p}.{k}" for p in packages for k in sorted(os.listdir(os.path.join(templates_directory, p)))])
+
+        print("Create::add_arguments", kinds, file=sys.stderr)
 
         command_parser.add_argument("plugin", type=str, help="The type of plugin", choices=kinds)
 
@@ -44,7 +52,7 @@ class Create(Command):
         group.add_argument("--doc", action="store_true", help="Generate doc examples")
         group.add_argument("--examples", action="store_true", help="Generate examples")
 
-        group.add_argument(
+        command_parser.add_argument(
             "--specialiation",
             type=str,
             help="Specialise plugin",
@@ -52,6 +60,8 @@ class Create(Command):
                 "xarray",
             ],
         )
+
+        print("Create::add_arguments", command_parser, file=sys.stderr)
 
     def run(self, args: Namespace) -> None:
         """Execute the command with the provided arguments.
