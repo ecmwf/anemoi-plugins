@@ -41,21 +41,21 @@ The following packages can be extended with plugins:
 
 -  :ref:`anemoi-transform <anemoi-transform:index-page>`
 
-      -  Sources
-      -  Filters
+   -  Sources
+   -  Filters
 
 -  :ref:`anemoi-datasets <anemoi-datasets:index-page>` (create)
 
-      -  :ref:`Sources <anemoi-datasets:sources>`
-      -  Filters
+   -  :ref:`Sources <anemoi-datasets:sources>`
+   -  Filters
 
 -  :ref:`anemoi-inference <anemoi-inference:index-page>`
 
-      -  Inputs
-      -  Outputs
-      -  Pre-processors
-      -  Post-processors
-      -  Runners
+   -  Inputs
+   -  Outputs
+   -  Pre-processors
+   -  Post-processors
+   -  Runners
 
 To get started with creating plugins, it is suggested that you install
 this package and run the ``anemoi-plugins new`` :ref:`command
@@ -68,6 +68,8 @@ this package and run the ``anemoi-plugins new`` :ref:`command
 
 Then, you can follow the instructions in the :ref:`User Guide
 <user-guide-introduction>` to create your plugin.
+
+.. _new_command: https://anemoi.readthedocs.io/en/latest/cli/new/
 
 ***********************
  Other Anemoi packages
