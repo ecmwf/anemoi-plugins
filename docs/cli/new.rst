@@ -15,15 +15,15 @@ The ``new`` command is used to create a new plugin project.
 
 Plugin types are:
 
-    -  ``anemoi.datasets.create.filter``
-    -  ``anemoi.datasets.create.source``
-    -  ``anemoi.inference.input``
-    -  ``anemoi.inference.output``
-    -  ``anemoi.inference.post-processor``
-    -  ``anemoi.inference.pre-processor``
-    -  ``anemoi.inference.runner``
-    -  ``anemoi.transform.filter``
-    -  ``anemoi.transform.source``
+    -  ``datasets.create.filter``
+    -  ``datasets.create.source``
+    -  ``inference.input``
+    -  ``inference.output``
+    -  ``inference.post-processor``
+    -  ``inference.pre-processor``
+    -  ``inference.runner``
+    -  ``transform.filter``
+    -  ``transform.source``
 
 
 The command will create a new Python package with the necessary structure to create a plugin. The command will also create a ``pyproject.toml`` file with the necessary entrypoints,
@@ -46,7 +46,7 @@ uses hiphen-case and the second one uses snake_case.
 By default, the plugin class will inherit from the corresponding class of the plugin type.
 In some cases, there already exists some spetialised subclasses that can be used instead.
 For example, the ``anemoi.datasets.create.source`` can be spetialised to support
-Xarray-based sources. You can select the specialisation with the ``--xarray`` option.
+Xarray-based sources. You can select the specialisation with the ``--specialisation xarray`` option.
 
 
 Command description

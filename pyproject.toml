@@ -39,20 +39,19 @@ classifiers = [
 
 dynamic = [ "version" ]
 dependencies = [
+  "anemoi-utils",
   "mako",
 ]
 
 optional-dependencies.all = [  ]
-optional-dependencies.dev = [  ]
+optional-dependencies.dev = [ "anemoi-plugins[all,docs,tests]" ]
 
 optional-dependencies.docs = [
   "nbsphinx",
   "pandoc",
-  "requests",
   "sphinx",
   "sphinx-argparse",
   "sphinx-rtd-theme",
-  "termcolor",
 ]
 
 optional-dependencies.tests = [ "pytest" ]
@@ -65,7 +64,7 @@ urls.Repository = "https://github.com/ecmwf/anemoi-plugins/"
 scripts.anemoi-plugins = "anemoi.plugins.__main__:main"
 
 [tool.setuptools.package-data]
-"anemoi.plugins.data" = [ "**/*" ]
+"anemoi.plugins.data" = [ "anemoi/plugins/data/**/*" ]
 
 [tool.setuptools_scm]
 version_file = "src/anemoi/plugins/_version.py"

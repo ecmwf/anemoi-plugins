@@ -16,6 +16,9 @@ from . import Command
 
 XARRAY = ["datasets.create.source"]
 GRIB = ["datasets.create.source", "inference.input"]
+SPECIALISABLE = [
+    "plugin.py.mako",
+]
 
 
 class Create(Command):
@@ -38,15 +41,20 @@ class Create(Command):
         command_parser.add_argument("--name", type=str, help="The name of the plugin", default="example")
         command_parser.add_argument("--package", type=str, help="The package of the plugin")
 
+        command_parser.add_argument(
+            "--specialiation",
+            type=str,
+            help="Specialise plugin",
+            choices=[
+                "xarray",
+            ],
+        )
+
         group = command_parser.add_mutually_exclusive_group()
 
         group.add_argument("--path", type=str, help="Output directory", default=".")
         group.add_argument("--doc", action="store_true", help="Generate doc examples")
         group.add_argument("--examples", action="store_true", help="Generate examples")
-
-        group = command_parser.add_mutually_exclusive_group()
-        group.add_argument("--xarray", action="store_true", help="Create an xarray plugin")
-        group.add_argument("--grib", action="store_true", help="Create a grib plugin")
 
     def run(self, args: Namespace) -> None:
         """Execute the command with the provided arguments.
@@ -158,10 +166,13 @@ class Create(Command):
             """
 
             directory, file = os.path.split(path)
-            if args.xarray:
-                specialised_path = os.path.join(directory, "xarray-" + file)
-                if os.path.exists(specialised_path):
-                    return specialised_path
+            if args.specialiation and file in SPECIALISABLE:
+
+                specialised_path = os.path.join(directory, args.specialiation + "-" + file)
+                if not os.path.exists(specialised_path):
+                    raise ValueError(f"Specialisation `{args.specialiation}` not found for `{args.plugin}`")
+
+                return specialised_path
 
             return path
 
