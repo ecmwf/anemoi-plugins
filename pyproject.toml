@@ -14,6 +14,8 @@ requires = [ "setuptools>=60", "setuptools-scm>=8" ]
 name = "anemoi-plugins"
 
 description = "A package to hold various functions to support training of ML models on ECMWF data."
+readme = "README.md"
+
 keywords = [ "ai", "tools" ]
 
 license = { file = "LICENSE" }
