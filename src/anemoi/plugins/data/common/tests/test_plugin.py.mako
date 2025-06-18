@@ -3,7 +3,7 @@ from anemoi.${package}.${testing} import TestingContext
 
 
 def test_plugin():
-    ${kind} = create_${kind}(TestingContext(), "${name}")
+    ${kind} = create_${kind}(TestingContext(), "${plugin_name}")
     assert ${kind} is not None
 
 if __name__ == "__main__":
