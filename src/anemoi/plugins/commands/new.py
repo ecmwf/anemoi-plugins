@@ -16,7 +16,7 @@ from anemoi.plugins.data import templates_directory
 from . import Command
 
 
-def camel_to_snake_case(val: str) -> str:
+def snake_to_camel_case(val: str) -> str:
     return "".join([word.capitalize() for word in val.split("_")])
 
 
@@ -145,7 +145,7 @@ class Create(Command):
 
         plugin_package = project_name.replace("-", "_")
         entry_point = ".".join(["anemoi", package, extended_kind]) + "s"
-        plugin_class = camel_to_snake_case(name) + "Plugin"
+        plugin_class = snake_to_camel_case(name) + "Plugin"
 
         settings: dict = dict(
             package=package,
