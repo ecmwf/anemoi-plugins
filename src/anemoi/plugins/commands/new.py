@@ -16,6 +16,10 @@ from anemoi.plugins.data import templates_directory
 from . import Command
 
 
+def camel_to_snake_case(val: str) -> str:
+    return "".join([word.capitalize() for word in val.split("_")])
+
+
 class Create(Command):
     """Create a new plugin."""
 
@@ -50,7 +54,13 @@ class Create(Command):
         packages = sorted(os.listdir(templates_directory))
         kinds = sorted([f"{p}.{k}" for p in packages for k in sorted(os.listdir(os.path.join(templates_directory, p)))])
 
-        command_parser.add_argument("plugin", type=str, help="The type of plugin", choices=kinds, metavar="PLUGIN")
+        command_parser.add_argument(
+            "plugin",
+            type=str,
+            help="The type of plugin",
+            choices=kinds,
+            metavar="PLUGIN",
+        )
 
         command_parser.add_argument("--name", type=str, help="The name of the plugin", default="example")
         command_parser.add_argument("--package", type=str, help="The package of the plugin")
@@ -89,14 +99,15 @@ class Create(Command):
         else:
             testing = "testing"
 
-        name = args.name
+        plugin_name = args.name
+        name = plugin_name.replace("-", "_")
 
         if args.package:
             project_name = args.package
             if "." in project_name:
                 raise ValueError(f"Invalid package name {project_name}")
         else:
-            project_name = f"anemoi-{package}-{extended_kind.replace('.','-')}-example-plugin"
+            project_name = f"anemoi-{package}-{extended_kind.replace('.', '-')}-example-plugin"
 
         if args.specialisation:
             self.specialisations.setdefault(args.plugin, defaultdict(list))
@@ -134,13 +145,14 @@ class Create(Command):
 
         plugin_package = project_name.replace("-", "_")
         entry_point = ".".join(["anemoi", package, extended_kind]) + "s"
-        plugin_class = name.capitalize() + "Plugin"
+        plugin_class = camel_to_snake_case(name) + "Plugin"
 
         settings: dict = dict(
             package=package,
             kind=kind,
             extended_kind=extended_kind,
             name=name,
+            plugin_name=plugin_name,
             project_name=project_name,
             plugin_package=plugin_package,
             entry_point=entry_point,
@@ -232,7 +244,6 @@ class Create(Command):
 
         for root, _, files in os.walk(source_directory):
             for file in files:
-
                 if "-" in file:
                     # Skip specialised files
                     continue
