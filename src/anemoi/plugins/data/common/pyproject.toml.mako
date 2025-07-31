@@ -36,4 +36,4 @@ classifiers = [
 
 urls.Homepage = "https://github.com/ecmwf/anemoi-plugins"
 
-entry-points."${entry_point}".${name} = "${plugin_package}.${name}:${plugin_class}"
+entry-points."${entry_point}".${plugin_name} = "${plugin_package}.${name}:${plugin_class}"
