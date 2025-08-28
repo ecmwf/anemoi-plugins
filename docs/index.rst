@@ -64,7 +64,7 @@ this package and run the ``anemoi-plugins new`` :ref:`command
 .. code:: bash
 
    % pip install anemoi-plugins
-   % anemoi-plugins new anemoi.datasets.create.source --name my-source
+   % anemoi-plugins new datasets.create.source --name my-source
 
 Then, you can follow the instructions in the :ref:`User Guide
 <user-guide-introduction>` to create your plugin.
