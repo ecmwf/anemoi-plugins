@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.2.0](https://github.com/ecmwf/anemoi-plugins/compare/0.1.0...0.2.0) (2026-02-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* deprecate 3.10 ([#28](https://github.com/ecmwf/anemoi-plugins/issues/28))
+
+### Features
+
+* Deprecate 3.10 ([#28](https://github.com/ecmwf/anemoi-plugins/issues/28)) ([9691fd7](https://github.com/ecmwf/anemoi-plugins/commit/9691fd79974d26b62c075fb22c854abf8f4074ed))
+* Drop python 3.9 ([#18](https://github.com/ecmwf/anemoi-plugins/issues/18)) ([8c8d92e](https://github.com/ecmwf/anemoi-plugins/commit/8c8d92eb4c955333cb26e2c625d0b741ab740503))
+
+
+### Bug Fixes
+
+* Allow '-' in plugin name ([#15](https://github.com/ecmwf/anemoi-plugins/issues/15)) ([d7e20c0](https://github.com/ecmwf/anemoi-plugins/commit/d7e20c08c491d132d08324aad6502f93db934075))
+* Building sources example ([#21](https://github.com/ecmwf/anemoi-plugins/issues/21)) ([8ef9eec](https://github.com/ecmwf/anemoi-plugins/commit/8ef9eecc6356870749c7b6f1927a448cafcbc654))
+
 ## 0.1.0 (2025-03-24)
 
 
