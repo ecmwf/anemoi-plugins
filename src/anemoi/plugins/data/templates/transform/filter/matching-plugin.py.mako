@@ -5,8 +5,8 @@ from typing import Iterator
 import earthkit.data as ekd
 import numpy as np
 
-from anemoi.transform.filters.matching import MatchingFieldsFilter
-from anemoi.transform.filters.matching import matching
+from anemoi.transform.filters.fields.matching import MatchingFieldsFilter
+from anemoi.transform.filters.fields.matching import matching
 
 
 class ${plugin_class}(MatchingFieldsFilter):
