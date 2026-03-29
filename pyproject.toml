@@ -12,19 +12,14 @@ requires = [ "setuptools>=60", "setuptools-scm>=8" ]
 
 [project]
 name = "anemoi-plugins"
-
 description = "A package to hold various functions to support training of ML models on ECMWF data."
 readme = "README.md"
-
 keywords = [ "ai", "tools" ]
-
 license = { file = "LICENSE" }
 authors = [
   { name = "European Centre for Medium-Range Weather Forecasts (ECMWF)", email = "software.support@ecmwf.int" },
 ]
-
 requires-python = ">=3.11,<3.14"
-
 classifiers = [
   "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
@@ -37,16 +32,13 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-
 dynamic = [ "version" ]
 dependencies = [
   "anemoi-utils",
   "mako",
 ]
-
-optional-dependencies.all = [  ]
+optional-dependencies.all = []
 optional-dependencies.dev = [ "anemoi-plugins[all,docs,tests]" ]
-
 optional-dependencies.docs = [
   "nbsphinx",
   "pandoc",
@@ -54,27 +46,24 @@ optional-dependencies.docs = [
   "sphinx-argparse",
   "sphinx-rtd-theme",
 ]
-
 optional-dependencies.tests = [ "pytest" ]
-
 urls.Documentation = "https://anemoi-plugins.readthedocs.io/"
 urls.Homepage = "https://github.com/ecmwf/anemoi-plugins/"
 urls.Issues = "https://github.com/ecmwf/anemoi-plugins/issues"
 urls.Repository = "https://github.com/ecmwf/anemoi-plugins/"
-
 scripts.anemoi-plugins = "anemoi.plugins.__main__:main"
 
-[tool.setuptools.package-data]
-"anemoi.plugins.data" = [ "anemoi/plugins/data/**/*" ]
+[tool.setuptools]
+package-data."anemoi.plugins.data" = [ "anemoi/plugins/data/**/*" ]
 
 [tool.setuptools_scm]
 version_file = "src/anemoi/plugins/_version.py"
 
-[tool.pytest.ini_options]
-markers = [
+[tool.pytest]
+ini_options.markers = [
   "skip_on_hpc: mark a test that should not be run on HPC",
 ]
-testpaths = "tests"
+ini_options.testpaths = "tests"
 
 [tool.mypy]
 strict = true

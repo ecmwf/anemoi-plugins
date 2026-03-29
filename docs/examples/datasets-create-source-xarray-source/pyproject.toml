@@ -5,18 +5,15 @@ requires = [
 
 [project]
 name = "xarray-source"
-
 version = "0.1.0"
 description = "A source plugin for anemoi.datasets"
 readme = { text = "A source plugin for anemoi.datasets", content-type = "text/markdown" }
-
 keywords = [
   "ai",
   "datasets",
   "source",
   "tools",
 ]
-
 license = { text = "Apache License Version 2.0" }
 authors = [
   { name = "John Doe", email = "author@example.com" },
@@ -32,7 +29,5 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-
 urls.Homepage = "https://github.com/ecmwf/anemoi-plugins"
-
 entry-points."anemoi.datasets.create.sources".example = "xarray_source.example:ExamplePlugin"
