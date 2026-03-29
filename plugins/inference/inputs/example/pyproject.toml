@@ -1,6 +1,5 @@
 [build-system]
 build-backend = "setuptools.build_meta"
-
 requires = [ "setuptools>=61" ]
 
 [project]
@@ -24,7 +23,6 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-
 urls.Homepage = "https://github.com/ecmwf/anemoi-plugins"
 entry-points."anemoi.inference.inputs".example = "anemoi_inference_input_example_plugin.example:ExamplePlugin"
 
