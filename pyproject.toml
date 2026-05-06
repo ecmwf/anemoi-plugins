@@ -6,7 +6,6 @@
 # In applying this licence, ECMWF does not waive the privileges and immunities
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
-
 [build-system]
 requires = [ "setuptools>=60", "setuptools-scm>=8" ]
 
@@ -59,17 +58,17 @@ package-data."anemoi.plugins.data" = [ "anemoi/plugins/data/**/*" ]
 [tool.setuptools_scm]
 version_file = "src/anemoi/plugins/_version.py"
 
-[tool.pytest]
-ini_options.markers = [
-  "skip_on_hpc: mark a test that should not be run on HPC",
-]
-ini_options.testpaths = "tests"
-
 [tool.mypy]
 strict = true
 exclude = [
   "docs/**",
 ]
+
+[tool.pytest]
+ini_options.markers = [
+  "skip_on_hpc: mark a test that should not be run on HPC",
+]
+ini_options.testpaths = "tests"
 
 [tool.pydocstringformatter]
 write = true
