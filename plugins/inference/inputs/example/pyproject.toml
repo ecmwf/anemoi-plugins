@@ -6,7 +6,7 @@ requires = [ "setuptools>=61" ]
 name = "anemoi-inference-input-example-plugin"
 version = "0.1.0"
 description = "A input plugin for anemoi.inference"
-readme = { text = "Filter plugin to do something", content-type = "text/markdown" }
+readme = { content-type = "text/markdown", text = "Filter plugin to do something" }
 keywords = [ "meteorology" ]
 license = { text = "Apache License Version 2.0" }
 authors = [
@@ -28,5 +28,5 @@ entry-points."anemoi.inference.inputs".example = "anemoi_inference_input_example
 
 [tool.setuptools]
 packages = [ "anemoi_inference_input_example_plugin" ]
-zip-safe = true
 include-package-data = true
+zip-safe = true
