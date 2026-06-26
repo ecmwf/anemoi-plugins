@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/ecmwf/anemoi-plugins/compare/0.2.0...0.2.1) (2026-06-26)
+
+
+### Documentation
+
+* Plugin schema details ([#36](https://github.com/ecmwf/anemoi-plugins/issues/36)) ([b2d3c4f](https://github.com/ecmwf/anemoi-plugins/commit/b2d3c4fcee3951d35e4e0d30d49dc9e1278f372f))
+
 ## [0.2.0](https://github.com/ecmwf/anemoi-plugins/compare/0.1.0...0.2.0) (2026-03-29)
 
 
