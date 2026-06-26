@@ -7,7 +7,7 @@ requires = [
 name = "basic-source"
 version = "0.1.0"
 description = "A source plugin for anemoi.datasets"
-readme = { text = "A source plugin for anemoi.datasets", content-type = "text/markdown" }
+readme = { content-type = "text/markdown", text = "A source plugin for anemoi.datasets" }
 keywords = [
   "ai",
   "datasets",
