@@ -6,12 +6,10 @@
 # nor does it submit to any jurisdiction.
 
 import os
-from argparse import ArgumentParser
-from argparse import Namespace
+from argparse import ArgumentParser, Namespace
 from collections import defaultdict
 
-from anemoi.plugins.data import common_directory
-from anemoi.plugins.data import templates_directory
+from anemoi.plugins.data import common_directory, templates_directory
 
 from . import Command
 
