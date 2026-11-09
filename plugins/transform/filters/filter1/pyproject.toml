@@ -30,3 +30,6 @@ entry-points."anemoi.filters".custom_filter1 = "anemoi_plugins_transform_filters
 packages = [ "anemoi_plugins_transform_filters_filter1" ]
 include-package-data = true
 zip-safe = true
+
+[tool.pyproject-fmt]
+generate_python_version_classifiers = false
