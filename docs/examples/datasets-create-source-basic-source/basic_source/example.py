@@ -4,7 +4,6 @@ from anemoi.datasets.create.typing import DateList
 
 
 class ExamplePlugin(Source):
-
     # The version of the plugin API, used to ensure compatibility
     # with the plugin manager.
 
