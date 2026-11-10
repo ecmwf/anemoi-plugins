@@ -31,3 +31,6 @@ classifiers = [
 ]
 urls.Homepage = "https://github.com/ecmwf/anemoi-plugins"
 entry-points."anemoi.datasets.create.sources".example = "basic_source.example:ExamplePlugin"
+
+[tool.pyproject-fmt]
+generate_python_version_classifiers = false

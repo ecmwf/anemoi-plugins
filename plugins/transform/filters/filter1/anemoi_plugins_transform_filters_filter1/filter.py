@@ -36,7 +36,6 @@ class Custom(Filter):
 
         result = []
         for field in data:
-
             if field.metadata("param") == self.a:
                 values = field.to_numpy(flatten=True)
                 values = values * 2

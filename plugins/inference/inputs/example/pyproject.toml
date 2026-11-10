@@ -30,3 +30,6 @@ entry-points."anemoi.inference.inputs".example = "anemoi_inference_input_example
 packages = [ "anemoi_inference_input_example_plugin" ]
 include-package-data = true
 zip-safe = true
+
+[tool.pyproject-fmt]
+generate_python_version_classifiers = false

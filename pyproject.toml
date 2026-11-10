@@ -59,6 +59,14 @@ package-data."anemoi.plugins.data" = [ "anemoi/plugins/data/**/*" ]
 [tool.setuptools_scm]
 version_file = "src/anemoi/plugins/_version.py"
 
+[tool.ruff]
+line-length = 120
+extend-exclude = [ "docs/**/*_.py" ]
+lint.select = [ "E4", "E7", "E9", "F", "I" ]
+lint.isort.force-single-line = true
+lint.isort.known-first-party = [ "anemoi.plugins" ]
+lint.isort.known-third-party = [ "anemoi" ]
+
 [tool.mypy]
 exclude = [
   "docs/**",
@@ -75,3 +83,11 @@ ini_options.markers = [
 write = true
 exclude = "docs/**"
 style = "numpydoc"
+
+[tool.docsig]
+check-class = true
+check-dunders = true
+check-overridden = true
+check-protected = true
+ignore-no-params = true
+disable = [ "SIG101", "SIG102", "SIG305", "SIG306", "SIG502", "SIG505" ]
