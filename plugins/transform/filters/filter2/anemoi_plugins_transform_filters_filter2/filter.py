@@ -14,8 +14,7 @@ import logging
 
 # from anemoi.transform.filters import filter_registry
 from anemoi.transform.fields import new_field_from_numpy
-from anemoi.transform.filters.matching import MatchingFieldsFilter
-from anemoi.transform.filters.matching import matching
+from anemoi.transform.filters.matching import MatchingFieldsFilter, matching
 
 LOG = logging.getLogger(__name__)
 
